@@ -11,10 +11,10 @@ def freq_plotter(filename):
     x = re.search("measurements", lines[i])
     if x:col_num = int(re.findall(r"[-+]?\d*\.?\d+|\d+", lines[i])[0]);break
   data = pd.read_csv(filename, skiprows = 41, sep='\t', header=0, names=list(range(col_num+1) ), index_col=False, dtype=float)
-  distance = np.asarray( df.iloc[:,0].copy())
+  distance = np.asarray( data.iloc[:,0].copy())
   freq = []
   for i in range (1,col_num+1):
-    k = np.asarray(df.iloc[:,i].copy())
+    k = np.asarray(data.iloc[:,i].copy())
     freq.append(k)
   fig = plt.figure(figsize= [ 18,10] )
   for i in range (1,col_num): 
@@ -25,4 +25,4 @@ def freq_plotter(filename):
   plt.grid(axis='both')
   plt.show()
 
-freq_plotter('insert_file_name.txt') // give filename here
+freq_plotter('insert_file_name.txt') #// give filename here
